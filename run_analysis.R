@@ -20,7 +20,6 @@ rm(tbl_train_values, tbl_train_activities, tbl_train_subjects)
 rm(tbl_test_values, tbl_test_activities, tbl_test_subjects)
 
 tbl_total <- rbind(tbl_train, tbl_test)
-write.csv(tbl_total, "tbl_total.csv")
 rm(tbl_train, tbl_test)
 
 # Extracts only the measurements on the mean and standard deviation for each measurement.
@@ -35,7 +34,6 @@ tbl_total_mean_std <- mutate(tbl_total_mean_std, V1.1=factor(V1.1, levels=lvls, 
 
 # Appropriately labels the data set with descriptive variable names.
 tbl_used_features <- tbl_features[which(tbl_features$V2 == "mean()" | tbl_features$V2 == "std()"), ]
-write.csv(tbl_used_features, "tbl_used_features.csv")
 column_names <- with(tbl_used_features, str_replace(paste(str_replace(V1, "\\d*\\s", ""), " ", V2, " ", V3), "\\s*$", ""))
 column_names <- c(column_names, "activity", "subject")
 
